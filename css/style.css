@@ -1,0 +1,171 @@
+:root {
+  --bg-top: #fde8f0;
+  --bg-bottom: #e7e3fb;
+  --ink: #4a3446;
+  --muted: #9a8496;
+  --accent: #ec7ca4;
+  --accent-soft: #fcd9e6;
+  --card: #ffffff;
+  --panel: #fff8fb;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: var(--bg-top);
+  color: var(--ink);
+  font-family: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+
+button { font: inherit; color: inherit; border: 0; background: none; padding: 0; cursor: pointer; }
+
+.app {
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) 44%;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
+  background:
+    radial-gradient(circle at 15% 20%, #ffffffaa 0 40px, transparent 41px),
+    radial-gradient(circle at 85% 35%, #ffffff88 0 26px, transparent 27px),
+    radial-gradient(circle at 70% 8%, #ffffff66 0 14px, transparent 15px),
+    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+}
+
+.topbar { text-align: center; padding: 8px 16px 0; }
+.logo {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 0.35em;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px 10px;
+  min-height: 0;
+}
+.stage svg { height: 100%; max-width: 100%; display: block; filter: drop-shadow(0 6px 14px #b48bb033); }
+.stage svg.pop { animation: pop 0.35s ease; }
+@keyframes pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.panel {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  background: var(--panel);
+  border-radius: 28px 28px 0 0;
+  box-shadow: 0 -6px 24px #c99ab833;
+  padding-bottom: env(safe-area-inset-bottom);
+  min-height: 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 14px 16px 10px;
+  scroll-snap-type: x proximity;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex: none;
+  scroll-snap-align: center;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 1px 4px #c99ab826;
+  transition: background 0.2s, color 0.2s;
+}
+.tab.active { background: var(--accent); color: #fff; }
+
+.swatches {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 2px 16px 10px;
+}
+.swatches[hidden] { display: none; }
+.swatches::-webkit-scrollbar { display: none; }
+.swatch {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: inset 0 0 0 1px #0000001a, 0 1px 3px #0000001f;
+  transition: transform 0.15s;
+}
+.swatch.active { box-shadow: 0 0 0 3px var(--panel), 0 0 0 5.5px var(--accent); transform: scale(1.05); }
+
+.options {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  align-content: start;
+  gap: 10px;
+  padding: 2px 16px 16px;
+}
+.option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 6px 8px;
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: 0 1px 5px #c99ab826;
+  border: 2.5px solid transparent;
+  transition: border-color 0.2s, transform 0.1s;
+}
+.option:active { transform: scale(0.97); }
+.option.active { border-color: var(--accent); background: #fff4f8; }
+.option.active::after {
+  content: "✓";
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 20px;
+  text-align: center;
+}
+.thumb { width: 100%; aspect-ratio: 1; display: block; }
+.thumb svg { width: 100%; height: 100%; display: block; }
+.name { font-size: 12px; font-weight: 600; text-align: center; line-height: 1.2; color: var(--ink); }
+
+/* Querformat (z. B. iPad quer): Figur links, Auswahl rechts */
+@media (orientation: landscape) {
+  .app {
+    grid-template-columns: 1fr minmax(320px, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .topbar { grid-column: 1 / -1; }
+  .panel { border-radius: 28px 0 0 0; padding-right: env(safe-area-inset-right); }
+}
