@@ -1,7 +1,7 @@
 // Service Worker: macht die App offline nutzbar.
 // Online wird immer die neueste Version geladen, offline die gespeicherte.
 // Bei neuen Dateien die Liste ergänzen und VERSION erhöhen.
-const VERSION = 'reallife-v1';
+const VERSION = 'reallife-v2';
 const FILES = [
   './',
   'index.html',

@@ -5,11 +5,22 @@ const r = (n) => Math.round(n * 10) / 10;
 
 export const p = (d) => `<path d="${d}"/>`;
 
+// Weiche Schattierung: Ein Verlauf (Ränder dunkler, Mitte heller) wird über jede Form gelegt.
+// renderCharacter legt den Verlauf an und setzt hier seine id.
+let shadeId = null;
+export const setShade = (id) => { shadeId = id; };
+export const shadeGradient = (id) =>
+  `<linearGradient id="${id}" x1="0" y1="0" x2="1" y2="0">` +
+  `<stop offset="0" stop-color="#3a1630" stop-opacity="0.15"/><stop offset="0.3" stop-color="#3a1630" stop-opacity="0"/>` +
+  `<stop offset="0.5" stop-color="#ffffff" stop-opacity="0.07"/><stop offset="0.7" stop-color="#3a1630" stop-opacity="0"/>` +
+  `<stop offset="1" stop-color="#3a1630" stop-opacity="0.15"/></linearGradient>`;
+
 // Form mit leichter Kontur: erst dick in der Linienfarbe, dann die Füllung darüber.
 // So entsteht nur am äußeren Rand eine Linie, auch wenn sich Teilformen überlappen.
-export function shape(inner, fill, line, width = 2.4) {
+export function shape(inner, fill, line, width = 2.1) {
   return `<g fill="${line}" stroke="${line}" stroke-width="${width * 2}" stroke-linejoin="round">${inner}</g>` +
-    `<g fill="${fill}">${inner}</g>`;
+    `<g fill="${fill}">${inner}</g>` +
+    (shadeId ? `<g fill="url(#${shadeId})">${inner}</g>` : '');
 }
 
 // Linie ohne Füllung (Falten, Strähnen, Nähte …)
