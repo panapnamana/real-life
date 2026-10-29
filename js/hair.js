@@ -12,7 +12,7 @@ export const HAIR_COLORS = [
   { id: 'dunkelrot', name: 'Dunkelrot', hex: '#862b3a' },
 ];
 
-export const hairColors = (hex) => ({ fill: hex, line: darken(hex, 0.42), light: lighten(hex, 0.5), dark: darken(hex, 0.2) });
+export const hairColors = (hex) => ({ fill: hex, line: darken(hex, 0.32), light: lighten(hex, 0.5), dark: darken(hex, 0.2) });
 
 const PINK = '#f28fb3';
 

@@ -41,7 +41,7 @@ export function renderCharacter(ch, { viewBox = '0 0 400 1130', label = 'Dein Ch
   const fig = body(skin);
   const svg = `<svg viewBox="${viewBox}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${label}" preserveAspectRatio="xMidYMid meet">` +
     `<defs>${shadeGradient(`${uid}-shade`)}</defs>` +
-    `<ellipse cx="200" cy="1110" rx="80" ry="12" fill="#6b4a7a" opacity="0.12"/>` +
+    `<ellipse cx="200" cy="1116" rx="80" ry="12" fill="#6b4a7a" opacity="0.12"/>` +
     bigHead(style.back(hair)) +
     fig.base +
     pick(SHOES, ch.shoes).render(ctx) +

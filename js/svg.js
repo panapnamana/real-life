@@ -11,9 +11,9 @@ let shadeId = null;
 export const setShade = (id) => { shadeId = id; };
 export const shadeGradient = (id) =>
   `<linearGradient id="${id}" x1="0" y1="0" x2="1" y2="0">` +
-  `<stop offset="0" stop-color="#3a1630" stop-opacity="0.15"/><stop offset="0.3" stop-color="#3a1630" stop-opacity="0"/>` +
-  `<stop offset="0.5" stop-color="#ffffff" stop-opacity="0.07"/><stop offset="0.7" stop-color="#3a1630" stop-opacity="0"/>` +
-  `<stop offset="1" stop-color="#3a1630" stop-opacity="0.15"/></linearGradient>`;
+  `<stop offset="0" stop-color="#b0485e" stop-opacity="0.22"/><stop offset="0.32" stop-color="#b0485e" stop-opacity="0"/>` +
+  `<stop offset="0.45" stop-color="#ffffff" stop-opacity="0.12"/><stop offset="0.68" stop-color="#b0485e" stop-opacity="0"/>` +
+  `<stop offset="1" stop-color="#b0485e" stop-opacity="0.22"/></linearGradient>`;
 
 // Form mit leichter Kontur: erst dick in der Linienfarbe, dann die Füllung darüber.
 // So entsteht nur am äußeren Rand eine Linie, auch wenn sich Teilformen überlappen.
